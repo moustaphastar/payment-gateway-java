@@ -6,7 +6,11 @@ plugins {
 
 group = 'com.mstar'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+
+compileJava {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
 
 configurations {
     compileOnly {
@@ -30,4 +34,8 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+bootJar {
+    mainClass.set('com.mstar.paymentgateway.PaymentGatewayApplication')
 }

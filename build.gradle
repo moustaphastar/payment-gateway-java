@@ -37,8 +37,5 @@ test {
 }
 
 bootJar {
-    mainClass.set('com.mstar.paymentgateway.PaymentGatewayApplication')
-    manifest {
-        attributes 'Start-Class' : 'com.mstar.paymentgateway.PaymentGatewayApplication'
-    }
+    mainClassName('com.mstar.paymentgateway.PaymentGatewayApplication')
 }

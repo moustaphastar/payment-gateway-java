@@ -36,6 +36,6 @@ test {
     useJUnitPlatform()
 }
 
-bootJar {
-    mainClass.set('com.mstar.paymentgateway.PaymentGatewayApplication')
+jar {
+    enabled = false
 }

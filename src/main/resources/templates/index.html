@@ -2,9 +2,109 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>index</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        .checkout-page-header {
+            font-size: 32px;
+            font-weight: 300;
+            text-align: center;
+        }
+        form {
+            margin: 0 auto;
+            width: 400px;
+            padding: 1em;
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+            -webkit-transition: box-shadow .28s ease-in-out;
+            transition: box-shadow .28s ease-in-out;
+        }
+
+        form:hover {
+            box-shadow: 0 1px 3px 0 rgba(60,64,67,.05),0 4px 8px 3px rgba(60,64,67,.15);
+        }
+
+        .form-input-wrapper {
+            margin-bottom: 0.5em;
+        }
+
+        .form-input {
+            outline: none;
+            padding: 0.4em;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font: 1em Consolas;
+            margin-left: 8px;
+        }
+
+        .form-input-label {
+            display: inline-block;
+            width: 33%;
+            font-family: inherit;
+            font-weight: 500;
+            font-size: 14px;
+            text-align: right;
+        }
+
+        input:focus {
+            /* To give a little highlight on active elements */
+            border-color: #1264f5;
+        }
+
+        .checkout-button-container {
+            text-align: right;
+        }
+
+        .checkout-button {
+            border: none;
+            border-radius: 4px;
+            background: #1a73e8;
+            color: #fff;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 36px;
+            letter-spacing: .25px;
+            padding: 0 24px;
+            text-decoration: none;
+            white-space: nowrap;
+            fill: #717171;
+            box-sizing: border-box;
+            position: relative;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            cursor: pointer;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+            display: inline-block;
+            vertical-align: baseline;
+            text-align: center;
+            margin: 0;
+            min-width: 64px;
+            overflow: visible;
+            box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+        }
+    </style>
 </head>
 <body>
-
+<h3 style="text-align: center">Payment gateway integration</h3>
+<h4 style="text-align: center">Index page</h4>
+<form method="get" th:action="@{/checkout}">
+    <div class="form-input-wrapper">
+        <label for="amount" class="form-input-label">Amount</label>
+        <input type="text" id="amount" name="amount" class="form-input" value="500" placeholder="500" />
+    </div>
+    <div class="form-input-wrapper">
+        <label for="currency" class="form-input-label">Currency</label>
+        <input type="text" id="currency" name="currency" class="form-input" value="USD" placeholder="USD" />
+    </div>
+    <div class="checkout-button-container">
+        <button type="submit" name="checkoutButton" class="checkout-button">&#10141;&nbsp;Checkout</button>
+    </div>
+</form>
 </body>
 </html>

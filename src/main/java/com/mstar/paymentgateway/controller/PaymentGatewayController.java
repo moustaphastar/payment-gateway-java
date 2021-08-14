@@ -1,6 +1,7 @@
 package com.mstar.paymentgateway.controller;
 
 import com.mstar.paymentgateway.models.CheckoutViewModel;
+import com.mstar.paymentgateway.payoneer.PayoneerGateway;
 import com.safecharge.exception.SafechargeException;
 import com.safecharge.request.PaymentRequest;
 import com.safecharge.response.InitPaymentResponse;
@@ -9,14 +10,18 @@ import com.safecharge.response.SafechargeResponse;
 import com.safecharge.response.ThreeDResponse;
 import com.safecharge.util.Constants;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,12 +39,34 @@ public class PaymentGatewayController {
     private final Map<String,String> sfcProps = new HashMap<>();
 
     /**
+     * Payoneer api valuesProperties
+     */
+    @Value("#{${payoneer}}")
+    private final Map<String,String> payoneerProps = new HashMap<>();
+
+    /**
      * Index action.
      * @return Redirects to checkout action.
      */
     @RequestMapping(method = RequestMethod.GET)
     public String index() {
         return "index";
+    }
+
+    /**
+     * Get listUrl action for Payoneer.
+     * @return listUrl.
+     */
+    @RequestMapping(method = RequestMethod.GET, path = "/listUrl", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String listUrl() {
+        String response;
+        try {
+            response = PayoneerGateway.getListUrl(payoneerProps,"300");
+            return response;
+        } catch (IOException exception) {
+            return null;
+        }
     }
 
     /**

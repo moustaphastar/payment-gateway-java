@@ -10,6 +10,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
+import org.springframework.lang.NonNull;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -22,7 +23,8 @@ public class PayoneerGateway {
     public PayoneerGateway() {
     }
 
-    public static String getListUrl(String amount) throws IOException {
+    public static String getListUrl(@NonNull final Map<String, String> payoneerKeys,
+                                    final String amount) throws IOException {
         Map<String, String> customer = new HashMap<>();
         customer.put("number", "42");
         customer.put("email", "john.doe@example.com");
@@ -48,7 +50,7 @@ public class PayoneerGateway {
         parameters.put("payment", payment);
         parameters.put("style", style);
         parameters.put("callback", callback);
-        String auth = "APPLAUSE" + ":" + "jr55qongujj4h4ge58t896jeug67le8rstfmta9t";
+        String auth = payoneerKeys.get("merchantCode") + ":" + payoneerKeys.get("token");
         byte[] encodedAuth = Base64.encodeBase64(
                 auth.getBytes(StandardCharsets.ISO_8859_1));
         String authHeader = "Basic " + new String(encodedAuth);

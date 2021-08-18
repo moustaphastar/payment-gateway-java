@@ -38,7 +38,7 @@ public class PayoneerGateway {
         style.put("language", "en_US");
 
         Map<String, String> callback = new HashMap<>();
-        callback.put("appId", "com.payoneer.checkout.examplecheckout.sdk");
+        callback.put("appId", "dev.atharvakulkarni.e_commerce");
         callback.put("notificationUrl", "https://dev.oscato.com/shop/notify.html");
 
         Map<String, Object> parameters = new HashMap<>();

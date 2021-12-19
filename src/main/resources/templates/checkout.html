@@ -159,7 +159,7 @@
         const button = document.getElementsByName(".checkout-button");
         button.disabled = true;
 
-        fetch('http://localhost:8080/safe-charge/do-payment-apm', {
+        fetch('safe-charge/do-payment-apm', {
             method: 'post',
             headers: {
                 'Accept': 'application/json, text/plain, */*',

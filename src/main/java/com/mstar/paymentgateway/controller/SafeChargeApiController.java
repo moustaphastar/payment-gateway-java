@@ -63,6 +63,8 @@ public class SafeChargeApiController {
 
     private void logAndWriteApmTestDMNParams(HashMap<String, Object> parameters) {
         SafeChargeUtils.logApmTestFlowDMNParametersToConsole(parameters);
-        SafeChargeUtils.writeApmTestFlowObjectsToFile(parameters, parameters.get("payment_method").toString(), "dmn");
+        if (!parameters.isEmpty() && parameters.get("payment_method") != null) {
+            SafeChargeUtils.writeApmTestFlowObjectsToFile(parameters, parameters.get("payment_method").toString() , "dmn");
+        }
     }
 }
